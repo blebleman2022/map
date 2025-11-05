@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>DollyAI - Tutors</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff6933",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#121212",
+                        "glass": "rgba(18, 18, 18, 0.5)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#B0B0B0]">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Header -->
+        <header class="sticky top-4 z-50 mx-auto w-full max-w-[1200px] px-4">
+            <div class="flex items-center justify-between whitespace-nowrap rounded-lg border border-white/10 bg-glass p-3 shadow-lg backdrop-blur-md">
+                <!-- Logo -->
+                <div class="flex items-center gap-4 text-white">
+                    <div class="size-5">
+                        <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-white text-lg font-bold tracking-[-0.015em]">DollyAI</h2>
+                </div>
+                
+                <!-- Navigation -->
+                <div class="flex items-center gap-8">
+                    <nav class="flex items-center gap-6">
+                        <a class="text-sm font-medium text-white/80 transition-colors hover:text-white" href="#">Dashboard</a>
+                        <a class="text-sm font-medium text-white transition-colors border-b-2 border-primary" href="#">Tutors</a>
+                        <a class="text-sm font-medium text-white/80 transition-colors hover:text-white" href="#">Profile</a>
+                    </nav>
+                    
+                    <!-- Connect Button -->
+                    <button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary h-10 px-6 text-sm font-bold text-white shadow-md transition-opacity hover:opacity-90">
+                        <span class="truncate">Connect</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex h-full grow flex-col">
+            <div class="layout-content-container flex max-w-[1200px] w-full mx-auto flex-1 flex-col px-4 py-8 sm:px-10">
+                <!-- Page Title -->
+                <div class="mb-12">
+                    <h1 class="text-3xl font-bold leading-tight tracking-[-0.033em] text-white sm:text-4xl">
+                        Tutors
+                    </h1>
+                </div>
+
+                <!-- Tutors Grid -->
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    <!-- Tutor Card 1 - Arena Copy Trader -->
+                    <div class="flex flex-col items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10 max-w-[200px]">
+                        <!-- Avatar -->
+                        <div class="flex h-20 w-20 items-center justify-center rounded-full overflow-hidden border-2 border-white/20 bg-gradient-to-br from-purple-500 to-pink-500">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Arena&backgroundColor=b6e3f4,c0aede,d1d4f9" alt="Arena Copy Trader" class="h-full w-full object-cover" />
+                        </div>
+
+                        <!-- Tutor Name -->
+                        <div class="text-center">
+                            <h3 class="text-base font-medium text-white">Arena Copy Trader</h3>
+                            <p class="mt-1 text-xs text-[#B0B0B0]">*Balance &gt; 10 USDC</p>
+                        </div>
+
+                        <!-- Enter Button -->
+                        <button class="w-full cursor-pointer overflow-hidden rounded-lg bg-primary py-2 text-sm font-bold text-white shadow-md transition-opacity hover:opacity-90">
+                            <span class="truncate">Enter</span>
+                        </button>
+                    </div>
+
+                    <!-- Tutor Card 2 - Advanced Trader -->
+                    <div class="flex flex-col items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10 max-w-[200px]">
+                        <div class="flex h-20 w-20 items-center justify-center rounded-full overflow-hidden border-2 border-white/20 bg-gradient-to-br from-blue-500 to-cyan-500">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Advanced&backgroundColor=ffd5dc,ffdfbf,c0aede" alt="Advanced Trader" class="h-full w-full object-cover" />
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-base font-medium text-white">Advanced Trader</h3>
+                            <p class="mt-1 text-xs text-[#B0B0B0]">*Balance &gt; 50 USDC</p>
+                        </div>
+                        <button class="w-full cursor-pointer overflow-hidden rounded-lg bg-primary py-2 text-sm font-bold text-white shadow-md transition-opacity hover:opacity-90">
+                            <span class="truncate">Enter</span>
+                        </button>
+                    </div>
+
+                    <!-- Tutor Card 3 - Pro Strategy -->
+                    <div class="flex flex-col items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10 max-w-[200px]">
+                        <div class="flex h-20 w-20 items-center justify-center rounded-full overflow-hidden border-2 border-white/20 bg-gradient-to-br from-green-500 to-emerald-500">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=ProStrategy&backgroundColor=b6e3f4,ffd5dc,d1d4f9" alt="Pro Strategy" class="h-full w-full object-cover" />
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-base font-medium text-white">Pro Strategy</h3>
+                            <p class="mt-1 text-xs text-[#B0B0B0]">*Balance &gt; 100 USDC</p>
+                        </div>
+                        <button class="w-full cursor-pointer overflow-hidden rounded-lg bg-primary py-2 text-sm font-bold text-white shadow-md transition-opacity hover:opacity-90">
+                            <span class="truncate">Enter</span>
+                        </button>
+                    </div>
+
+                    <!-- Tutor Card 4 - Elite Mentor -->
+                    <div class="flex flex-col items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10 max-w-[200px]">
+                        <div class="flex h-20 w-20 items-center justify-center rounded-full overflow-hidden border-2 border-white/20 bg-gradient-to-br from-orange-500 to-red-500">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=EliteMentor&backgroundColor=ffdfbf,c0aede,ffd5dc" alt="Elite Mentor" class="h-full w-full object-cover" />
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-base font-medium text-white">Elite Mentor</h3>
+                            <p class="mt-1 text-xs text-[#B0B0B0]">*Balance &gt; 500 USDC</p>
+                        </div>
+                        <button class="w-full cursor-pointer overflow-hidden rounded-lg bg-primary py-2 text-sm font-bold text-white shadow-md transition-opacity hover:opacity-90">
+                            <span class="truncate">Enter</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+

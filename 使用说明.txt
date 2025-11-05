@@ -1,0 +1,169 @@
+========================================
+DollyNav 智能对话导航 - 使用说明
+========================================
+
+项目已完成！以下是使用步骤：
+
+一、项目结构
+========================================
+Dolly/
+├── backend/          # 后端服务（FastAPI + Python）
+├── frontend/         # 前端应用（Next.js + React）
+├── start.bat         # 一键启动脚本（Windows）
+├── test_setup.py     # 环境检查脚本
+├── README.md         # 完整文档
+├── QUICKSTART.md     # 快速开始指南
+├── SETUP.md          # 详细安装指南
+└── PROJECT_OVERVIEW.md  # 项目总览
+
+二、快速开始（3步）
+========================================
+
+【第1步】获取高德地图 API Key（必须）
+
+1. 访问：https://lbs.amap.com/
+2. 注册并登录
+3. 创建应用，获取两个 Key：
+   - Web 服务 API Key（后端用）
+   - Web 端 JS API Key（前端用）
+
+【第2步】配置环境变量
+
+编辑以下文件：
+
+backend/.env
+-----------
+AMAP_API_KEY=你的Web服务API_Key
+
+frontend/.env.local
+------------------
+NEXT_PUBLIC_AMAP_KEY=你的Web端JS_API_Key
+
+【第3步】启动服务
+
+方式一：双击 start.bat（推荐）
+
+方式二：手动启动
+  后端：
+    cd backend
+    python -m venv venv
+    venv\Scripts\activate
+    pip install -r requirements.txt
+    python -m app.main
+
+  前端：
+    cd frontend
+    npm install
+    npm run dev
+
+三、访问应用
+========================================
+
+前端应用：http://localhost:3000
+后端 API：http://localhost:8000
+API 文档：http://localhost:8000/docs
+
+四、功能测试
+========================================
+
+1. 环境检查：
+   python test_setup.py
+
+2. 后端测试（无需 API Key）：
+   cd backend
+   python test_api.py
+
+3. 完整功能测试：
+   在浏览器中输入查询：
+   - "附近的星巴克"
+   - "1公里内的便利店"
+   - "附近5公里内离地铁站最近的3个经济型酒店"
+
+五、常见问题
+========================================
+
+Q1: 没有 LLM API Key 可以用吗？
+A: 可以！不配置 LLM，系统会使用规则引擎。
+
+Q2: 地图不显示？
+A: 检查 frontend/.env.local 中的 NEXT_PUBLIC_AMAP_KEY
+
+Q3: 搜索没结果？
+A: 检查 backend/.env 中的 AMAP_API_KEY
+
+Q4: 端口被占用？
+A: 修改 backend/.env 中的 PORT=8001
+
+六、技术栈
+========================================
+
+后端：
+- FastAPI（异步 Web 框架）
+- Python 3.9+
+- 高德地图 API
+- 通义千问/OpenAI（可选）
+
+前端：
+- Next.js 14
+- React 18
+- TypeScript
+- Tailwind CSS
+- 高德地图 JS API
+
+七、核心功能
+========================================
+
+✓ 自然语言查询
+✓ 智能解析（LLM/规则引擎）
+✓ 地图可视化
+✓ 复杂条件筛选
+✓ 智能排序
+✓ 导航功能
+✓ 响应式设计
+
+八、查询示例
+========================================
+
+基础查询：
+- "附近的星巴克"
+- "1公里内的便利店"
+- "最近的地铁站"
+
+复杂查询：
+- "附近5公里内离地铁站最近的3个经济型酒店"
+- "500米内24小时营业的药店"
+- "2公里内评分最高的川菜馆"
+
+品牌筛选：
+- "附近的如家酒店"
+- "最近的全家便利店"
+
+九、文档说明
+========================================
+
+README.md - 完整项目文档
+QUICKSTART.md - 5分钟快速开始
+SETUP.md - 详细安装指南
+PROJECT_OVERVIEW.md - 技术架构说明
+
+十、下一步
+========================================
+
+1. 配置 API Keys
+2. 运行 python test_setup.py 检查环境
+3. 双击 start.bat 启动服务
+4. 访问 http://localhost:3000
+5. 开始使用！
+
+========================================
+祝使用愉快！
+========================================
+
+技术支持：
+- 查看文档：README.md
+- 运行测试：python test_setup.py
+- 查看日志：后端控制台 + 浏览器 F12
+
+版本：1.0.0
+日期：2025-01-04
+
