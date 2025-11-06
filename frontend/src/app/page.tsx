@@ -8,39 +8,16 @@ import Header from '@/components/Header'
 import { Search, MapPin } from 'lucide-react'
 
 export default function Home() {
-  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null)
+  // 默认位置：北京天安门（不再自动获取系统位置）
+  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number }>({
+    lat: 39.9042,
+    lng: 116.4074
+  })
   const [searchResults, setSearchResults] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
   const [parsedQuery, setParsedQuery] = useState<any>(null)
 
-  // 获取用户位置
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          })
-        },
-        (error) => {
-          console.error('获取位置失败:', error)
-          // 默认位置：北京天安门
-          setUserLocation({ lat: 39.9042, lng: 116.4074 })
-        }
-      )
-    } else {
-      // 默认位置
-      setUserLocation({ lat: 39.9042, lng: 116.4074 })
-    }
-  }, [])
-
   const handleSearch = async (query: string) => {
-    if (!userLocation) {
-      alert('正在获取位置，请稍候...')
-      return
-    }
-
     setLoading(true)
     setParsedQuery(null)
     setSearchResults([])
@@ -66,6 +43,9 @@ export default function Home() {
 
       setParsedQuery(parseData)
 
+      // 使用解析后的位置（如果有）或默认位置
+      const searchLocation = parseData.data.filters?.location || userLocation
+
       // 2. 搜索
       const searchResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/search`, {
         method: 'POST',
@@ -78,7 +58,7 @@ export default function Home() {
           sort_by: parseData.data.sort_by,
           brands: parseData.data.filters?.brands,
           proximity: parseData.data.filters?.proximity,
-          location: userLocation,
+          location: searchLocation,
         }),
       })
 
@@ -116,6 +96,11 @@ export default function Home() {
             <div className="mt-4 p-4 bg-white/5 border border-white/10 rounded-lg">
               <h3 className="text-sm font-medium text-gray-400 mb-2">查询解析：</h3>
               <div className="flex flex-wrap gap-2">
+                {parsedQuery.display.location && (
+                  <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm">
+                    📍 位置: {parsedQuery.display.location}
+                  </span>
+                )}
                 <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm">
                   类型: {parsedQuery.display.type}
                 </span>
@@ -159,22 +144,22 @@ export default function Home() {
               <p className="text-lg">输入查询开始搜索</p>
               <div className="mt-6 flex flex-wrap gap-2 justify-center">
                 <button
-                  onClick={() => handleSearch('附近1公里内的星巴克')}
+                  onClick={() => handleSearch('东方明珠塔附近1公里内的星巴克')}
                   className="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors"
                 >
-                  附近的星巴克
+                  东方明珠塔附近的星巴克
                 </button>
                 <button
-                  onClick={() => handleSearch('最近的3个地铁站')}
+                  onClick={() => handleSearch('北京天安门周边3公里内的地铁站')}
                   className="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors"
                 >
-                  最近的地铁站
+                  天安门周边的地铁站
                 </button>
                 <button
-                  onClick={() => handleSearch('5公里内评分最高的川菜馆')}
+                  onClick={() => handleSearch('上海外滩5公里内的川菜馆')}
                   className="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors"
                 >
-                  附近的川菜馆
+                  外滩附近的川菜馆
                 </button>
               </div>
             </div>

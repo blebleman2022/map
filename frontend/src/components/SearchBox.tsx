@@ -25,7 +25,7 @@ export default function SearchBox({ onSearch, loading }: SearchBoxProps) {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="例如：附近5公里内离地铁站最近的3个经济型酒店..."
+          placeholder="例如：东方明珠塔附近5公里内离地铁站最近的3个星巴克..."
           className="w-full px-6 py-4 pr-32 bg-white/5 border-2 border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary transition-colors"
           disabled={loading}
         />

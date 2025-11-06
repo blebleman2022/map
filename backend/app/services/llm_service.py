@@ -30,20 +30,40 @@ async def parse_query_with_llm(message: str, location: Dict[str, float]) -> Dict
   "limit": 返回数量（默认10，最大20）,
   "sort_by": "排序方式（如：距离最近、评分最高、距离地铁站最近等，可选）",
   "brands": ["品牌列表，可选"],
-  "proximity": "靠近的地点类型（如：地铁站、商场等，可选）"
+  "proximity": "靠近的地点类型（如：地铁站、商场等，可选）",
+  "location_query": "用户指定的位置（如：东方明珠塔、北京天安门、上海外滩等，可选）"
 }
 
-示例：
-用户："我要找附近5公里内离地铁站口最近的3个知名经济型连锁酒店门店"
+注意：
+1. 如果用户明确指定了位置（如"东方明珠塔附近"、"天安门周边"），提取到 location_query 字段
+2. 如果用户只说"附近"，则 location_query 为 null，使用默认位置
+
+示例1：
+用户："东方明珠塔附近5公里内离地铁站口最近的3个星巴克"
 返回：
 {
-  "category": "酒店",
-  "subcategory": "经济型连锁酒店",
+  "category": "咖啡厅",
+  "subcategory": null,
   "radius": 5000,
   "limit": 3,
   "sort_by": "距离地铁站最近",
-  "brands": ["如家", "汉庭", "7天", "锦江之星"],
-  "proximity": "地铁站"
+  "brands": ["星巴克"],
+  "proximity": "地铁站",
+  "location_query": "东方明珠塔"
+}
+
+示例2：
+用户："附近1公里内的星巴克"
+返回：
+{
+  "category": "咖啡厅",
+  "subcategory": null,
+  "radius": 1000,
+  "limit": 10,
+  "sort_by": null,
+  "brands": ["星巴克"],
+  "proximity": null,
+  "location_query": null
 }
 
 只返回 JSON，不要其他解释。"""
@@ -181,7 +201,8 @@ def parse_with_rules(message: str) -> Dict[str, Any]:
         "limit": 10,
         "sort_by": None,
         "brands": None,
-        "proximity": None
+        "proximity": None,
+        "location_query": None
     }
     
     # 提取类型
@@ -224,6 +245,21 @@ def parse_with_rules(message: str) -> Dict[str, Any]:
     if "地铁" in message and ("最近" in message or "近" in message):
         result["sort_by"] = "距离地铁站最近"
         result["proximity"] = "地铁站"
-    
+
+    # 提取位置信息（简单规则）
+    # 匹配 "XXX附近"、"XXX周边"、"XXX旁边" 等模式
+    location_patterns = [
+        r'(.+?)(附近|周边|旁边|附近的|周边的)',
+        r'在(.+?)(找|搜索|查找)',
+    ]
+    for pattern in location_patterns:
+        location_match = re.search(pattern, message)
+        if location_match:
+            potential_location = location_match.group(1).strip()
+            # 排除"附近"、"我"等无效词
+            if potential_location and potential_location not in ['附近', '我', '这里', '这边']:
+                result["location_query"] = potential_location
+                break
+
     return result
 

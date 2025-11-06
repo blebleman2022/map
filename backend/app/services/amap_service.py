@@ -1,10 +1,47 @@
 """高德地图服务"""
 import httpx
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Tuple
 from app.config import get_settings
 import math
 
 settings = get_settings()
+
+
+async def geocode_location(address: str, city: str = "全国") -> Optional[Dict[str, float]]:
+    """地理编码：将地址转换为经纬度坐标
+
+    Args:
+        address: 地址或地点名称
+        city: 城市名称，默认"全国"
+
+    Returns:
+        {"lat": 纬度, "lng": 经度} 或 None
+    """
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.get(
+                "https://restapi.amap.com/v3/geocode/geo",
+                params={
+                    "key": settings.amap_api_key,
+                    "address": address,
+                    "city": city
+                }
+            )
+
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("status") == "1" and data.get("geocodes"):
+                    geocode = data["geocodes"][0]
+                    location_str = geocode.get("location", "")
+                    if location_str:
+                        lng, lat = map(float, location_str.split(","))
+                        return {"lat": lat, "lng": lng}
+
+            return None
+
+    except Exception as e:
+        print(f"地理编码失败: {e}")
+        return None
 
 
 # 类型映射
