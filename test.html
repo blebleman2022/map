@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KAROT - Visualize Financial Data</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#ff6933",
+              "background-light": "#f8f6f5",
+              "background-dark": "#121212",
+              "glass": "rgba(18, 18, 18, 0.5)",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#B0B0B0]">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="sticky top-4 z-50 mx-auto w-full max-w-[960px] px-4">
+<div class="flex items-center justify-between whitespace-nowrap rounded-lg border border-white/10 bg-glass p-3 shadow-lg backdrop-blur-md">
+<div class="flex items-center gap-4 text-white">
+<div class="size-5">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path></svg>
+</div>
+<h2 class="text-white text-lg font-bold tracking-[-0.015em]">KAROT</h2>
+</div>
+<div class="hidden items-center gap-8 md:flex">
+<div class="flex items-center gap-6">
+<a class="text-sm font-medium text-white/80 transition-colors hover:text-white" href="#">Integrations</a>
+<a class="text-sm font-medium text-white/80 transition-colors hover:text-white" href="#">Features</a>
+<a class="text-sm font-medium text-white/80 transition-colors hover:text-white" href="#">Components</a>
+<a class="text-sm font-medium text-white/80 transition-colors hover:text-white" href="#">FAQ</a>
+</div>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary h-10 px-4 text-sm font-bold text-white shadow-md transition-opacity hover:opacity-90">
+<span class="truncate">Join Waitlist</span>
+</button>
+</div>
+</header>
+<main class="flex h-full grow flex-col items-center">
+<div class="layout-content-container flex max-w-[960px] flex-1 flex-col px-4 py-5 sm:px-10">
+<!-- Hero Section -->
+<section class="flex flex-col items-center gap-6 py-20 text-center sm:py-28">
+<div class="flex flex-col gap-4">
+<h1 class="text-4xl font-black leading-tight tracking-[-0.033em] text-white sm:text-6xl">
+                        Visualize Financial Data with Unprecedented Clarity
+                    </h1>
+<h2 class="mx-auto max-w-2xl text-base font-normal leading-normal text-[#E0E0E0] sm:text-lg">
+                        KAROT offers real-time data synchronization, customizable dashboards, and advanced analytics to empower your financial decisions.
+                    </h2>
+</div>
+<button class="mt-4 flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary h-12 px-6 text-base font-bold text-white shadow-lg transition-opacity hover:opacity-90">
+<span class="truncate">Join Waitlist</span>
+</button>
+</section>
+<!-- Features Section -->
+<section class="w-full py-16">
+<h2 class="text-center text-[22px] font-bold leading-tight tracking-[-0.015em] text-white sm:text-left">Key Features</h2>
+<div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+<div class="flex flex-1 flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-4">
+<span class="material-symbols-outlined text-primary" style="font-size: 24px;">cloud_sync</span>
+<div class="flex flex-col gap-1">
+<h3 class="text-base font-bold leading-tight text-white">Real-time Data Sync</h3>
+<p class="text-sm font-normal leading-normal text-[#B0B0B0]">Connect your data sources and get live updates without delay.</p>
+</div>
+</div>
+<div class="flex flex-1 flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-4">
+<span class="material-symbols-outlined text-primary" style="font-size: 24px;">dashboard_customize</span>
+<div class="flex flex-col gap-1">
+<h3 class="text-base font-bold leading-tight text-white">Customizable Dashboards</h3>
+<p class="text-sm font-normal leading-normal text-[#B0B0B0]">Build and tailor dashboards to fit your specific analytical needs.</p>
+</div>
+</div>
+<div class="flex flex-1 flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-4">
+<span class="material-symbols-outlined text-primary" style="font-size: 24px;">analytics</span>
+<div class="flex flex-col gap-1">
+<h3 class="text-base font-bold leading-tight text-white">Advanced Analytics</h3>
+<p class="text-sm font-normal leading-normal text-[#B0B0B0]">Leverage powerful tools to uncover deep insights from your data.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="w-full py-16">
+<h2 class="text-center text-[22px] font-bold leading-tight tracking-[-0.015em] text-white sm:text-left">Frequently Asked Questions</h2>
+<div class="mt-6 space-y-4">
+<details class="group rounded-lg">
+<summary class="flex cursor-pointer list-none items-center justify-between rounded-lg border-2 border-primary bg-transparent p-4 text-white transition-colors group-hover:bg-primary group-hover:text-background-dark">
+<span class="font-medium">What integrations are supported?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-2 rounded-lg bg-[#F5F5F5] p-4 text-[#333333]">
+<p>KAROT supports a wide range of integrations, including major financial platforms, databases, and APIs. We are continuously expanding our list of supported services to ensure seamless data connectivity for all our users.</p>
+</div>
+</details>
+<details class="group rounded-lg">
+<summary class="flex cursor-pointer list-none items-center justify-between rounded-lg border-2 border-primary bg-transparent p-4 text-white transition-colors group-hover:bg-primary group-hover:text-background-dark">
+<span class="font-medium">Is there a free trial available?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-2 rounded-lg bg-[#F5F5F5] p-4 text-[#333333]">
+<p>Yes, we will offer a 14-day free trial for all new users once we launch. You can explore all the features of KAROT without any commitment. Join the waitlist to be notified when the trial becomes available.</p>
+</div>
+</details>
+<details class="group rounded-lg">
+<summary class="flex cursor-pointer list-none items-center justify-between rounded-lg border-2 border-primary bg-transparent p-4 text-white transition-colors group-hover:bg-primary group-hover:text-background-dark">
+<span class="font-medium">When is the official launch date?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-2 rounded-lg bg-[#F5F5F5] p-4 text-[#333333]">
+<p>We are working hard to bring KAROT to you as soon as possible. While we don't have a fixed launch date yet, joining the waitlist is the best way to get early access and stay informed about our progress and official release.</p>
+</div>
+</details>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>
